@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자가진단 질문 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="diagnosis.css">
+</head>
+<body>
+<div class="layout">
+<aside class="gnb">
+<div class="gnb-brand"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></div>
+<nav class="gnb-nav">
+<a href="../04-schedule-calendar/index.html">일정 대시보드</a>
+<a href="../05-housing-tracker/index.html">내 공고</a>
+<a href="../02-self-diagnosis/index.html" aria-current="page">자가진단</a>
+</nav>
+<a class="gnb-add" href="../03-notice-summary/index.html">+ 공고 추가</a>
+</aside>
+<main class="layout-main">
+<div class="qwrap">
+<div class="qtop">
+<h1>주거지원 자가진단</h1>
+<div class="progress"><div class="progress-bar"><div id="bar"></div></div><span id="stepLabel"></span></div>
+</div>
+<div class="qbody">
+<ol class="steps" id="steps"></ol>
+<div class="qcol">
+<div class="qcard">
+<div class="qhead"><span id="qMeta"></span><h2 id="qTitle"></h2><p id="qHelp"></p></div>
+<div class="term" id="term" hidden><strong id="termTitle"></strong><span id="termDesc"></span></div>
+<div class="options" id="options"></div>
+<div class="qnav">
+<a class="btn" id="btnFirst" href="index.html">처음으로</a>
+<button class="btn" id="btnPrev" type="button">이전</button>
+<button class="btn btn-primary" id="btnNext" type="button">다음</button>
+<a class="btn btn-primary" id="btnResult" href="result.html">결과 보기</a>
+</div>
+</div>
+<p class="diag-note">답변은 이 기기(브라우저)에 저장됩니다. 금액 기준은 2026년 하반기 모집공고 기준입니다.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+const Q = [
+  { short: '나이', title: '만 나이를 선택하세요', help: '모집공고일 기준 만 나이입니다. 청년 대상 공공임대주택은 대부분 만 19~39세를 대상으로 합니다.', opts: ['만 18세 이하', '만 19~39세', '만 40세 이상'] },
+  { short: '희망 지역', title: '입주를 희망하는 지역을 선택하세요', help: '선택한 지역의 공고를 먼저 보여드립니다. 다른 지역 공고는 구분해서 함께 안내합니다.', opts: ['서울', '경기', '인천', '그 외 광역시, 세종', '그 밖의 지역', '지역 무관'] },
+  { short: '가구 형태', title: '혼인 여부와 가구 형태를 선택하세요', help: '청년 공급은 대부분 미혼을 대상으로 하며, 신혼부부는 별도 공급 유형으로 신청합니다.', opts: ['미혼, 1인 가구', '미혼, 부모님 등과 함께 거주', '신혼부부, 예비신혼부부', '그 외'] },
+  { short: '무주택 여부', title: '주택 소유 현황을 선택하세요', help: '공고에 따라 본인만 무주택이면 되는 경우와 세대원 전원이 무주택이어야 하는 경우가 있습니다.', term: '무주택세대구성원', termDesc: '세대주와 세대원 전원이 주택을 소유하지 않은 세대의 구성원을 말합니다. 분양권과 입주권도 주택 소유로 보는 경우가 있습니다.', opts: ['본인과 세대원 모두 무주택', '본인은 무주택, 세대원 중 주택 소유자 있음', '본인이 주택을 소유하고 있음', '잘 모르겠습니다'] },
+  { short: '소득', title: '세전 월평균소득을 선택하세요', help: '1인 가구 기준 금액입니다. 세대원과 단독세대주는 본인 소득, 세대주는 세대 합산 소득을 기준으로 하는 공고가 많습니다.', term: '도시근로자 가구원수별 월평균소득', termDesc: '공공주택 소득 기준의 기준값입니다. 1인 가구 100%는 월 381만 3,363원, 120%는 월 457만 6,036원입니다.', opts: ['월 381만원 이하 (기준 100% 이하)', '월 381만원 초과 ~ 458만원 이하 (120% 이하)', '월 458만원 초과', '잘 모르겠습니다'] },
+  { short: '자산', title: '세대 총자산을 선택하세요', help: '부동산, 예금, 자동차 등을 모두 합산한 금액입니다. 자동차는 차량가액 4,542만원 이하 기준이 별도로 적용됩니다.', opts: ['2억 5,100만원 이하', '2억 5,100만원 초과 ~ 3억 4,500만원 이하', '3억 4,500만원 초과', '잘 모르겠습니다'] },
+  { short: '재학, 취업', title: '현재 상태를 선택하세요', help: '대학생, 취업준비생, 사회초년생 대상 공급을 구분하는 데 사용합니다.', opts: ['대학생', '취업준비생', '직장인, 사회초년생', '그 외'] },
+  { short: '청약통장', title: '주택청약종합저축에 가입되어 있나요?', help: '행복주택 등 일부 공고는 입주 전까지 청약통장 가입이 필요합니다.', opts: ['가입되어 있습니다', '가입되어 있지 않습니다', '잘 모르겠습니다'] },
+  { short: '관심 공급 유형', title: '관심 있는 공급 유형을 모두 선택하세요', help: '복수 선택할 수 있습니다. 선택한 유형의 공고만 추천합니다.', opts: ['행복주택', '청년 매입임대', '청년 전세임대', '청년안심주택', '잘 모르겠습니다 (전체 보기)'], multi: true }
+];
+const N = Q.length;
+// 시연용 예시 사용자 답변 (shared/sample-data.js의 user와 같은 값)
+const PERSONA = [1, 1, 0, 0, 0, 0, 2, 2, [0, 1]];
+// 주소 뒤 ?q=5 처럼 문항 번호를 붙이면 해당 문항부터 엽니다. 그 앞 문항은 예시 답변으로 채웁니다.
+const qParam = parseInt(new URLSearchParams(location.search).get('q'), 10);
+let i = Number.isInteger(qParam) ? Math.min(N, Math.max(1, qParam)) - 1 : 0;
+const picks = {};
+PERSONA.forEach((v, k) => { if (k <= i) picks[k] = Array.isArray(v) ? v.slice() : v; });
+
+const $ = (id) => document.getElementById(id);
+const CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
+const answered = (k) => Array.isArray(picks[k]) ? picks[k].length > 0 : picks[k] !== undefined;
+
+function render() {
+  const q = Q[i];
+  $('bar').style.width = Math.round((i + 1) / N * 100) + '%';
+  $('stepLabel').textContent = (i + 1) + ' / ' + N;
+  $('steps').innerHTML = Q.map((x, k) =>
+    `<li><button type="button" data-k="${k}" ${k === i ? 'aria-current="step"' : ''}><span class="num">${k + 1}</span><span class="label">${x.short}</span>${answered(k) && k !== i ? '<span class="done">완료</span>' : ''}</button></li>`).join('');
+  $('qMeta').textContent = '질문 ' + (i + 1) + (q.multi ? ', 복수 선택' : '');
+  $('qTitle').textContent = q.title;
+  $('qHelp').textContent = q.help;
+  $('term').hidden = !q.term;
+  if (q.term) { $('termTitle').textContent = '용어 설명: ' + q.term; $('termDesc').textContent = q.termDesc; }
+  $('options').innerHTML = q.opts.map((label, k) => {
+    const on = q.multi ? (picks[i] || []).includes(k) : picks[i] === k;
+    return `<button type="button" data-k="${k}" aria-pressed="${on}"><span>${label}</span>${on ? CHECK : ''}</button>`;
+  }).join('');
+  $('btnFirst').hidden = i !== 0;
+  $('btnPrev').hidden = i === 0;
+  $('btnNext').hidden = i === N - 1;
+  $('btnResult').hidden = i !== N - 1;
+}
+$('steps').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { i = +b.dataset.k; render(); } });
+$('options').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  const k = +b.dataset.k;
+  if (Q[i].multi) { const cur = picks[i] || []; picks[i] = cur.includes(k) ? cur.filter((x) => x !== k) : cur.concat(k); }
+  else picks[i] = k;
+  render();
+});
+$('btnPrev').addEventListener('click', () => { i = Math.max(0, i - 1); render(); });
+$('btnNext').addEventListener('click', () => { i = Math.min(N - 1, i + 1); render(); });
+render();
+</script>
+</body>
+</html>
