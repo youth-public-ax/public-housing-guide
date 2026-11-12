@@ -1,0 +1,44 @@
+/* 공통 스타일: 모든 화면에서 불러옵니다. 값을 바꿀 때는 팀에 먼저 알립니다. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
+
+:root {
+  --color-text: #1C1C1C;
+  --color-text-sub: #5E5E5A;
+  --color-border: #E4E4E0;
+  --color-border-strong: #8A8A85;
+  --color-bg: #FFFFFF;
+  --color-bg-sub: #F5F5F3;
+  --color-bg-menu: #FAFAF8;
+  --radius: 10px;
+  --content-max: 1120px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Noto Sans KR", system-ui, sans-serif;
+}
+
+a { color: var(--color-text); }
+
+/* 화면 틀: 왼쪽 메뉴 + 본문 */
+.layout { display: flex; flex-wrap: wrap; min-height: 100vh; }
+.layout-main { flex: 999 1 560px; min-width: 0; padding: 32px 40px; }
+.layout-content { max-width: var(--content-max); margin: 0 auto; }
+
+/* 왼쪽 메뉴 (shared/gnb.html) */
+.gnb { flex: 1 1 240px; padding: 28px 16px; border-right: 1px solid var(--color-border); background: var(--color-bg-menu); display: flex; flex-direction: column; gap: 28px; }
+.gnb-brand { display: flex; flex-direction: column; gap: 2px; padding: 0 12px; }
+.gnb-brand strong { font-size: 18px; }
+.gnb-brand span { font-size: 13px; color: var(--color-text-sub); }
+.gnb-nav { display: flex; flex-direction: column; gap: 4px; }
+.gnb-nav a { min-height: 44px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; font-size: 15px; text-decoration: none; }
+.gnb-nav a[aria-current="page"] { background: var(--color-text); color: #FFFFFF; font-weight: 500; }
+.gnb-add { height: 48px; border-radius: var(--radius); border: 1.5px solid var(--color-text); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500; text-decoration: none; }
+
+/* 버튼 */
+.btn { height: 48px; padding: 0 24px; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; font: inherit; font-size: 15px; text-decoration: none; cursor: pointer; border: 1px solid var(--color-border-strong); background: #FFFFFF; color: var(--color-text); }
+.btn-primary { border-color: var(--color-text); background: var(--color-text); color: #FFFFFF; font-weight: 500; }
