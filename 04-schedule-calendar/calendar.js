@@ -142,7 +142,7 @@
       '</dl>' +
       '<div class="summary-actions">' +
       '<button type="button" class="star-btn" data-star="' + n.id + '" aria-pressed="' + on + '">' + (on ? '★ 스크랩 해제' : '☆ 스크랩') + '</button>' +
-      '<a class="detail-btn" href="../05-housing-tracker/index.html">공고 상세 보기</a>' +
+      '<a class="detail-btn" href="../03-notice-summary/notice-detail.html?id=' + encodeURIComponent(n.id) + '&amp;from=calendar">공고 상세 보기</a>' +
       '</div>' +
       '<a class="summary-link" href="' + esc(n.link) + '" target="_blank" rel="noopener">공고 원문 사이트에서 확인하기</a>' +
       '<span class="summary-note">최종 신청 자격은 공고문과 공급 기관에서 확인하시기 바랍니다.</span>';
@@ -186,7 +186,7 @@
       .filter((n) => parse(n.apply.end) >= TODAY)
       .sort((a, b) => parse(a.apply.end) - parse(b.apply.end));
     box.innerHTML = '<h2>지금 챙길 공고</h2>' + (items.length
-      ? items.map((n) => '<button type="button" class="todo-item" data-open="' + n.id + '"><span>접수 마감 ' + md(n.apply.end) + ' · ' + esc(n.type) + ' ' + esc(n.region) + '</span><strong>' + ddayOf(n.apply.end) + '</strong></button>').join('')
+      ? items.map((n) => '<a class="todo-item" href="../05-housing-tracker/index.html"><span>접수 마감 ' + md(n.apply.end) + ' · ' + esc(n.type) + ' ' + esc(n.region) + '</span><strong>' + ddayOf(n.apply.end) + '</strong></a>').join('')
       : '<p class="empty">접수 중인 스크랩 공고가 없습니다.</p>');
   }
 

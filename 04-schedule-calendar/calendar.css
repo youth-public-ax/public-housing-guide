@@ -100,7 +100,7 @@
 
 .todo { border: 1px solid var(--color-border); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
 .todo h2 { margin: 0; font-size: 15px; font-weight: 700; }
-.todo-item { min-height: 44px; padding: 8px 12px; border-radius: var(--radius); border: 1.5px solid #B5561A; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #FFFFFF; font: inherit; font-size: 14px; text-align: left; color: var(--color-text); cursor: pointer; }
+.todo-item { text-decoration: none; min-height: 44px; padding: 8px 12px; border-radius: var(--radius); border: 1.5px solid #B5561A; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: #FFFFFF; font: inherit; font-size: 14px; text-align: left; color: var(--color-text); cursor: pointer; }
 .todo-item strong { flex: none; color: #8A3F10; }
 .todo-item span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .first-visit { display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px; }
