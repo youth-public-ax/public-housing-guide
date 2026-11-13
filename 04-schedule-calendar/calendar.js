@@ -1,4 +1,4 @@
-// 04 일정 대시보드: 월간 캘린더, 별표 등록, 공고 요약, 공급 기관 필터
+// 04 일정 대시보드: 월간 캘린더, 스크랩, 공고 요약, 공급 기관 필터
 // 공고와 날짜는 shared/sample-data.js 값을 사용합니다. (AGENTS.md 6장)
 (function () {
   const S = window.SAMPLE;
@@ -12,7 +12,7 @@
   const WD = ['일', '월', '화', '수', '목', '금', '토'];
   const DAY = 86400000;
 
-  // 상태 값: ?state=first 이면 등록한 공고가 없는 첫 방문 화면
+  // 상태 값: ?state=first 이면 스크랩한 공고가 없는 첫 방문 화면
   const params = new URLSearchParams(location.search);
   const firstVisit = params.get('state') === 'first';
 
@@ -43,7 +43,7 @@
     }
   });
 
-  // 등록(별표) 상태: 이 브라우저에만 저장합니다.
+  // 스크랩(별표) 상태: 이 브라우저에만 저장합니다.
   const STORE = 'phg-calendar-stars';
   let star = {};
   if (!firstVisit) {
@@ -113,7 +113,7 @@
         const t = TYPES[e.type];
         const on = !!star[e.id];
         html += '<span class="chip' + (past ? ' past' : '') + '">';
-        html += '<button type="button" class="chip-star" data-star="' + e.id + '" aria-pressed="' + on + '" aria-label="' + esc(n.name) + (on ? ' 등록 해제' : ' 내 캘린더에 등록') + '">' + (on ? '★' : '☆') + '</button>';
+        html += '<button type="button" class="chip-star" data-star="' + e.id + '" aria-pressed="' + on + '" aria-label="' + esc(n.name) + (on ? ' 스크랩 해제' : ' 스크랩') + '">' + (on ? '★' : '☆') + '</button>';
         html += '<button type="button" class="chip-open ' + t.cls + (on ? ' on' : '') + (state.open === e.id ? ' active' : '') + '" data-open="' + e.id + '" data-day="' + k + '" aria-label="' + esc(n.name) + ' ' + t.label + ', 요약 보기"><span class="badge">' + t.ch + '</span><span class="name">' + esc(n.place) + ' ' + esc(n.type) + '</span></button>';
         html += '</span>';
       });
@@ -131,7 +131,7 @@
     box.hidden = false;
     box.innerHTML =
       '<div class="summary-head"><div>' +
-      '<span class="summary-meta"><span class="org-tag">' + esc(n.orgShort) + '</span>' + esc(n.type) + (on ? '<span class="star-mark">★ 등록됨</span>' : '') + '</span>' +
+      '<span class="summary-meta"><span class="org-tag">' + esc(n.orgShort) + '</span>' + esc(n.type) + (on ? '<span class="star-mark">★ 스크랩됨</span>' : '') + '</span>' +
       '<h2>' + esc(n.name) + '</h2></div>' +
       '<button type="button" class="close-btn" data-close aria-label="공고 요약 닫기"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>' +
       '<dl>' +
@@ -141,7 +141,7 @@
       '<dt>임대 조건</dt><dd>' + esc(n.rent) + '</dd>' +
       '</dl>' +
       '<div class="summary-actions">' +
-      '<button type="button" class="star-btn" data-star="' + n.id + '" aria-pressed="' + on + '">' + (on ? '★ 등록 해제' : '☆ 내 캘린더에 등록') + '</button>' +
+      '<button type="button" class="star-btn" data-star="' + n.id + '" aria-pressed="' + on + '">' + (on ? '★ 스크랩 해제' : '☆ 스크랩') + '</button>' +
       '<a class="detail-btn" href="../05-housing-tracker/index.html">공고 상세 보기</a>' +
       '</div>' +
       '<a class="summary-link" href="' + esc(n.link) + '" target="_blank" rel="noopener">공고 원문 사이트에서 확인하기</a>' +
@@ -175,8 +175,8 @@
     const mine = notices.filter((n) => star[n.id]);
     if (!mine.length) {
       box.hidden = false;
-      box.innerHTML = '<h2>등록한 공고가 없습니다</h2>' +
-        '<div class="first-visit"><p class="empty">캘린더의 공고 옆 ☆를 누르면 내 캘린더에 등록되고, 접수 마감이 가까운 공고를 여기에서 알려드립니다.</p>' +
+      box.innerHTML = '<h2>스크랩한 공고가 없습니다</h2>' +
+        '<div class="first-visit"><p class="empty">캘린더의 공고 옆 ☆를 누르면 스크랩되고, 접수 마감이 가까운 공고를 여기에서 알려드립니다.</p>' +
         '<a class="btn btn-primary" href="../03-notice-summary/index.html">공고 링크로 바로 추가</a></div>';
       return;
     }
@@ -187,7 +187,7 @@
       .sort((a, b) => parse(a.apply.end) - parse(b.apply.end));
     box.innerHTML = '<h2>지금 챙길 공고</h2>' + (items.length
       ? items.map((n) => '<button type="button" class="todo-item" data-open="' + n.id + '"><span>접수 마감 ' + md(n.apply.end) + ' · ' + esc(n.type) + ' ' + esc(n.region) + '</span><strong>' + ddayOf(n.apply.end) + '</strong></button>').join('')
-      : '<p class="empty">접수 중인 등록 공고가 없습니다.</p>');
+      : '<p class="empty">접수 중인 스크랩 공고가 없습니다.</p>');
   }
 
   function render() {
