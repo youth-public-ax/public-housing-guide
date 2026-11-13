@@ -19,7 +19,7 @@
 | 02-self-diagnosis | 주거지원 자가진단 | sungyoon |
 | 03-notice-summary | AI 공고 설명 | (영문 이름) |
 | 04-schedule-calendar | 캘린더 대시보드 | seungbeom |
-| 05-housing-tracker | 주거트래커 | (영문 이름) |
+| 05-housing-tracker | 주거트래커 | subin |
 | shared | 공통 스타일, 왼쪽 메뉴, 예시 데이터 | 전체 합의 후 수정 |
 
 - 담당자 이름은 영문 소문자로 띄어쓰기 없이 씁니다. 예: sungyoon
