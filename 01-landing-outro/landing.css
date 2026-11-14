@@ -119,15 +119,6 @@
 .info-list { margin: 0; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px 12px; font-size: 14px; line-height: 1.6; }
 .info-list dt { color: var(--color-text-sub); }
 .info-list dd { margin: 0; }
-.checklist { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.checklist label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 4px; border-radius: 8px; cursor: pointer; }
-.checklist label:hover { background: var(--color-bg-sub); }
-.checklist input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--color-text); }
-.checklist div { display: flex; flex-direction: column; gap: 2px; }
-.checklist strong { font-size: 15px; font-weight: 500; }
-.checklist span { font-size: 13px; color: var(--color-text-sub); line-height: 1.6; }
-.checklist input:checked + div strong { text-decoration: line-through; color: var(--color-text-sub); }
-.check-count { font-size: 13px; color: var(--color-text-sub); }
 
 .next { border-radius: 16px; background: var(--color-bg-sub); padding: 22px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
 .next div { display: flex; flex-direction: column; gap: 4px; }
@@ -236,10 +227,6 @@ a.situation:hover .go { text-decoration: underline; }
 .journey li { font-size: 16px; }
 .journey li span { font-size: 14px; }
 .info-list { grid-template-columns: 100px minmax(0, 1fr); font-size: 16px; }
-.checklist strong { font-size: 17px; }
-.checklist span { font-size: 15px; }
-.checklist input { width: 20px; height: 20px; margin-top: 4px; }
-.check-count { font-size: 14px; }
 .next strong { font-size: 18px; }
 .next span { font-size: 16px; }
 .outro-note { font-size: 14px; }

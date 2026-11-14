@@ -37,11 +37,5 @@
     $('nextText').textContent = '지원 트래킹 보드에서 남은 공고의 다음 할 일을 확인해 보세요.';
   }
 
-  // 체크리스트 진행 수 (기록은 저장하지 않습니다)
-  const boxes = Array.from(document.querySelectorAll('#checklist input'));
-  const count = () => { $('checkCount').textContent = boxes.filter((b) => b.checked).length + ' / ' + boxes.length + ' 완료'; };
-  boxes.forEach((b) => b.addEventListener('change', count));
-  count();
-
   if (S.today) $('source').textContent = '공고 정보 출처: 마이홈포털, LH청약플러스, 각 공급기관 모집공고, ' + fmt(S.today) + ' 기준.';
 })();
