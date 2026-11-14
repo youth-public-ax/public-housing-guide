@@ -138,8 +138,6 @@
 
 /* ── 사용자 관점 개편 (2차) ── */
 .page { word-break: keep-all; overflow-wrap: anywhere; }
-.trust { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 14px; color: #3A3A37; }
-.trust li { display: inline-flex; align-items: center; gap: 6px; }
 
 a.preview { text-decoration: none; color: var(--color-text); transition: transform .15s, box-shadow .15s; }
 a.preview:hover { transform: translate(-2px, -2px); box-shadow: 12px 12px 0 var(--color-bg-sub); }
@@ -205,7 +203,6 @@ a.situation:hover .go { text-decoration: underline; }
 /* 히어로 */
 .hero h1 { font-size: 50px; line-height: 1.28; }
 .hero-copy > p { font-size: 19px; line-height: 1.75; }
-.trust { font-size: 15px; }
 .preview-head strong { font-size: 19px; }
 .preview-head span, .preview-more { font-size: 14px; }
 .preview-item strong { font-size: 17px; line-height: 1.45; }
