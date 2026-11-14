@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 공고 카드 확인 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="notice.css">
+</head>
+<body>
+<div class="layout">
+<aside class="gnb">
+<div class="gnb-brand"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></div>
+<nav class="gnb-nav">
+<a href="../04-schedule-calendar/index.html">일정 대시보드</a>
+<a href="../05-housing-tracker/index.html">지원 트래킹 보드</a>
+<a href="../02-self-diagnosis/index.html">자가진단</a>
+</nav>
+<a class="gnb-add" href="../03-notice-summary/index.html" aria-current="page">+ 공고 추가</a>
+</aside>
+
+<main class="layout-main ns-main">
+<div class="ns-wrap">
+<a class="ns-back" href="index.html">← 다시 입력하기</a>
+<div class="ns-page-title">
+<h1>AI가 정리한 내용을 확인해 주세요</h1>
+<p>틀린 곳은 바로 고친 뒤 저장합니다. 저장하면 스크랩되어 일정 대시보드에 표시됩니다.</p>
+</div>
+
+<div class="ns-cols">
+<div class="ns-col-main" id="content">
+<section class="nh" aria-label="공고 정보">
+<div class="nh-info">
+<span class="nh-meta"><span class="nh-type" id="type"></span><span id="orgRegion"></span></span>
+<h2 id="name" style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.4"></h2>
+<span class="nh-period">접수 <span id="apply"></span> <strong id="dday"></strong> · <a id="origin" href="#" target="_blank" rel="noopener">공고 원문</a></span>
+</div>
+</section>
+<div class="ai-flag"><span class="ai-badge">AI 정리</span>밑줄 친 단어를 누르면 오른쪽에 풀이가 나옵니다.</div>
+<section class="summary">
+<h2>한 줄 요약</h2>
+<p id="summary"></p>
+</section>
+<div class="cards">
+<section class="card">
+<h2>신청 자격</h2>
+<ul id="elig"></ul>
+</section>
+<section class="card">
+<h2>일정 <span class="example">예시 값은 고칠 수 있습니다</span></h2>
+<dl id="schedule"></dl>
+</section>
+<section class="card">
+<h2>임대 조건</h2>
+<p class="sub">임대보증금 · 월 임대료</p>
+<p class="rent" id="rent"></p>
+</section>
+<section class="card">
+<h2>준비 서류</h2>
+<ul id="docs"></ul>
+</section>
+</div>
+<div class="save-bar">
+<a class="btn" href="index.html">다시 입력하기</a>
+<button type="button" class="btn btn-primary" id="save">저장하고 공고 상세 보기</button>
+</div>
+<p class="ns-note" id="source"></p>
+</div>
+<div class="ns-col-side"><div class="ai-panel-wrap" id="aiPanel"></div></div>
+</div>
+</div>
+</main>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="notice-data.js"></script>
+<script src="notice-common.js"></script>
+<script src="ai-panel.js"></script>
+<script>
+(function () {
+  const { esc, params, notice, setScrap, underlineTerms } = window.NOTICE;
+  const AI = window.NOTICE_AI;
+  const $ = (id) => document.getElementById(id);
+  const n = notice(params().id);
+
+  $('type').textContent = n.type;
+  $('orgRegion').textContent = n.org + ', ' + n.region;
+  $('name').textContent = n.name;
+  $('apply').textContent = n.applyText;
+  $('dday').textContent = n.dday;
+  $('origin').href = n.link;
+  $('summary').textContent = n.summary || '';
+  $('elig').innerHTML = (n.eligibility || []).map((x) => '<li>' + esc(x) + '</li>').join('');
+  $('schedule').innerHTML = '<dt>청약 접수</dt><dd><strong>' + esc(n.applyText) + '</strong></dd>' +
+    AI.steps.map((s, i) => '<dt><label for="sch' + i + '">' + esc(s) + '</label></dt><dd><input class="edit" id="sch' + i + '" value="' + esc((n.schedule || [])[i] || '') + '"></dd>').join('');
+  $('rent').textContent = n.rent;
+  $('docs').innerHTML = (n.docs || []).map((x) => '<li>' + esc(x) + '</li>').join('');
+  $('source').textContent = '출처: ' + (n.source || '') + ' · 시연에서는 고친 값이 저장되지 않습니다.';
+
+  const panel = window.mountAiPanel($('aiPanel'), n);
+  underlineTerms($('content'), (t, btn) => panel.showTerm(t, btn));
+
+  // 저장하면 자동으로 스크랩하고 공고 상세로 이동합니다. (IA.md 4장)
+  $('save').addEventListener('click', () => {
+    setScrap(n.id, true);
+    location.href = 'notice-detail.html?id=' + encodeURIComponent(n.id) + '&from=calendar';
+  });
+})();
+</script>
+</body>
+</html>

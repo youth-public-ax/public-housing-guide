@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공고 상세 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="notice.css">
+</head>
+<body>
+<div class="layout">
+<aside class="gnb">
+<div class="gnb-brand"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></div>
+<nav class="gnb-nav">
+<a href="../04-schedule-calendar/index.html" aria-current="page">일정 대시보드</a>
+<a href="../05-housing-tracker/index.html">지원 트래킹 보드</a>
+<a href="../02-self-diagnosis/index.html">자가진단</a>
+</nav>
+<a class="gnb-add" href="../03-notice-summary/index.html">+ 공고 추가</a>
+</aside>
+
+<main class="layout-main ns-main">
+<div class="ns-wrap">
+<a class="ns-back" id="back" href="../04-schedule-calendar/index.html">← 일정 대시보드</a>
+
+<section class="nh" aria-label="공고 정보">
+<div class="nh-top">
+<div class="nh-info">
+<span class="nh-meta"><span class="nh-type" id="type"></span><span id="orgRegion"></span></span>
+<h1 id="name"></h1>
+<span class="nh-period">접수 <span id="apply"></span> <strong id="dday"></strong></span>
+</div>
+<div class="nh-actions">
+<button type="button" class="btn scrap-btn" id="scrapBtn" aria-pressed="false"><span aria-hidden="true" id="scrapIcon">☆</span><b id="scrapLabel">스크랩</b></button>
+<a class="btn" id="origin" href="#" target="_blank" rel="noopener">공고 원문</a>
+</div>
+</div>
+<div class="seg-row">
+<nav class="seg" aria-label="공고 보기 전환">
+<a aria-current="page" href="#">공고 상세</a>
+<a id="segOpen" href="#">지원 현황</a>
+<button type="button" class="seg-locked" id="segLocked" aria-describedby="segHint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>지원 현황</button>
+</nav>
+<span class="seg-hint" id="segHint"></span>
+</div>
+</section>
+
+<div class="ns-cols">
+<div class="ns-col-main" id="content">
+<div class="ai-flag"><span class="ai-badge">AI 정리</span>공고 원문을 쉬운 말로 정리했습니다. 밑줄 친 단어를 누르면 오른쪽에 풀이가 나옵니다.</div>
+<section class="summary">
+<h2>한 줄 요약</h2>
+<p id="summary"></p>
+</section>
+<div class="cards">
+<section class="card">
+<h2>신청 자격</h2>
+<ul id="elig"></ul>
+</section>
+<section class="card">
+<h2>일정</h2>
+<dl id="schedule"></dl>
+<span class="sub" id="scheduleNote">접수 이후 일정은 예시입니다. 공고문에서 확인하세요.</span>
+</section>
+<section class="card">
+<h2>임대 조건</h2>
+<p class="sub">임대보증금 · 월 임대료</p>
+<p class="rent" id="rent"></p>
+<p class="sub" id="areaNote"></p>
+</section>
+<section class="card">
+<h2>준비 서류</h2>
+<ul id="docs"></ul>
+<span class="sub">준비 여부는 지원 현황에서 체크합니다.</span>
+</section>
+</div>
+<p class="ns-note" id="source"></p>
+</div>
+<div class="ns-col-side"><div class="ai-panel-wrap" id="aiPanel"></div></div>
+</div>
+</div>
+</main>
+</div>
+
+<div class="dialog-bg" id="dialog" hidden>
+<section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+<h2 id="dialogTitle">스크랩을 해제할까요?</h2>
+<p>이 공고가 일정 대시보드와 지원 트래킹 보드에서 빠지고, 지금까지 기록한 지원 현황이 삭제됩니다.</p>
+<div class="dialog-actions">
+<button type="button" class="btn" id="dialogCancel">취소</button>
+<button type="button" class="btn btn-warn" id="dialogOk">해제하고 기록 삭제</button>
+</div>
+</section>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="notice-data.js"></script>
+<script src="notice-common.js"></script>
+<script src="ai-panel.js"></script>
+<script src="notice-detail.js"></script>
+</body>
+</html>
