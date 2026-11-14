@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지원 트래킹 보드 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="tracker.css">
+</head>
+<body>
+<div class="layout">
+<aside class="gnb">
+<div class="gnb-brand"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></div>
+<nav class="gnb-nav">
+<a href="../04-schedule-calendar/index.html">일정 대시보드</a>
+<a href="../05-housing-tracker/index.html" aria-current="page">지원 트래킹 보드</a>
+<a href="../02-self-diagnosis/index.html">자가진단</a>
+</nav>
+<a class="gnb-add" href="../03-notice-summary/index.html">+ 공고 추가</a>
+</aside>
+
+<main class="layout-main">
+<div class="tk-wrap">
+
+<div class="tk-head">
+<h1>지원 트래킹 보드</h1>
+<span id="basis"></span>
+</div>
+
+<div class="tk-toast" id="toast" role="status" hidden></div>
+
+<div class="tk-scroll">
+<div class="tk-grid" id="cols"></div>
+</div>
+
+<section class="tk-end" id="endZone" aria-label="종료된 공고">
+<button type="button" class="tk-end-btn" id="endBtn" aria-expanded="false" aria-controls="endList">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+<strong>종료</strong>
+<span class="tk-count" id="endCount">0</span>
+<span class="sub">미선정 · 비대상 · 지원 중단 · 입주 완료</span>
+<span class="hint" id="endHint"></span>
+</button>
+<ul class="tk-end-list" id="endList" hidden></ul>
+</section>
+
+<p class="tk-source" id="source"></p>
+</div>
+</main>
+</div>
+
+<div class="tk-overlay" id="modal" hidden>
+<section class="tk-dialog" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span class="kicker" id="mKicker"></span>
+<h2 id="mTitle"></h2>
+</div>
+
+<div id="mBack" hidden style="display: flex; flex-direction: column; gap: 16px">
+<p id="mBody"></p>
+<div class="tk-actions">
+<button type="button" class="tk-btn" data-close>취소</button>
+<button type="button" class="tk-btn primary" id="mBackOk"></button>
+</div>
+</div>
+
+<div id="mFwd" hidden style="display: flex; flex-direction: column; gap: 16px">
+<div class="tk-opts" role="radiogroup" aria-label="결과" id="mOpts"></div>
+<div class="tk-msg" id="mMsg" hidden><strong id="mMsgTitle"></strong><span id="mMsgBody"></span></div>
+<label class="tk-field">메모 (선택)
+<textarea id="mMemo" placeholder="예: 안내 문자 받음"></textarea>
+</label>
+<span class="tk-err" role="alert" id="mErr" hidden>결과를 먼저 골라 주세요.</span>
+<div class="tk-actions">
+<button type="button" class="tk-btn" data-close>취소</button>
+<button type="button" class="tk-btn primary" id="mFwdOk" aria-disabled="true"></button>
+</div>
+</div>
+</section>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="tracker.js"></script>
+<script src="board.js"></script>
+</body>
+</html>
