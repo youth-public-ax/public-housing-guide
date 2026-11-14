@@ -44,3 +44,19 @@
 
   $('source').textContent = '공고 정보 출처: 마이홈포털, LH청약플러스, 각 공급기관 모집공고, ' + fmt(S.today) + ' 기준. 시연 기준일은 ' + fmt(S.today) + '이며, 공고 내용은 변경될 수 있습니다.';
 })();
+
+// 상단 메뉴: 지금 보고 있는 구역의 메뉴를 굵게 표시합니다. (about.html은 마크업에서 '서비스 소개'를 표시합니다)
+(function () {
+  const links = [...document.querySelectorAll('.topnav a[data-section]')];
+  const targets = links.map((a) => document.getElementById(a.dataset.section)).filter(Boolean);
+  if (!targets.length) return;
+  const mark = () => {
+    const y = window.scrollY + 120;
+    let cur = null;
+    targets.forEach((t) => { if (t.offsetTop <= y && t.offsetTop + t.offsetHeight > y) cur = t.id; });
+    links.forEach((a) => { if (a.dataset.section === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+  };
+  window.addEventListener('scroll', mark, { passive: true });
+  window.addEventListener('hashchange', mark);
+  mark();
+})();

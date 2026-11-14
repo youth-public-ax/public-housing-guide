@@ -398,3 +398,18 @@ a.situation:hover .go { text-decoration: underline; }
   .hero-cta { flex-wrap: nowrap; }
   .hero-cta .btn { padding: 0 24px; white-space: nowrap; }
 }
+
+/* ── 상단 메뉴 (index.html, about.html 공통) ──────────────────────────────
+   두 페이지가 같은 메뉴를 쓰고, 좁은 화면에서도 메뉴가 사라지지 않습니다.
+   메뉴로 이동한 구역의 제목이 고정된 상단 바에 가려지지 않도록 여백을 둡니다. */
+html { scroll-padding-top: 73px; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.topnav a:not(.btn) { padding: 6px 2px; border-bottom: 2px solid transparent; white-space: nowrap; }
+.topnav a[aria-current] { color: var(--color-text); font-weight: 700; border-bottom-color: var(--color-text); }
+@media (max-width: 900px) {
+  .topbar nav.topnav a:not(.btn) { display: inline-block; }
+  .topbar .wrap { height: auto; min-height: 64px; padding-top: 8px; padding-bottom: 8px; flex-wrap: wrap; row-gap: 4px; }
+  .topbar nav.topnav { gap: 14px; font-size: 14px; overflow-x: auto; max-width: 100%; }
+  .topbar nav.topnav .btn { display: none; }
+  html { scroll-padding-top: 120px; }
+}
