@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>입주 완료 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="landing.css">
+</head>
+<body>
+<div class="page">
+
+<header class="topbar">
+<div class="wrap">
+<a class="brand" href="index.html"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></a>
+<nav aria-label="아웃 페이지 메뉴">
+<a href="../05-housing-tracker/index.html">지원 트래킹 보드</a>
+<a href="../04-schedule-calendar/index.html">일정 대시보드</a>
+</nav>
+</div>
+</header>
+
+<main class="outro">
+<div class="wrap">
+
+<section class="done-head">
+<img class="done-art" src="assets/outro-home.svg" alt="" width="320" height="220">
+<span class="eyebrow">입주 완료</span>
+<h1>새 집 입주를 축하합니다</h1>
+<p id="doneText">공고를 찾고, 신청하고, 계약까지 모든 과정을 마쳤습니다. 그동안 기록한 과정을 정리해 드립니다.</p>
+</section>
+
+<section class="journey" aria-label="지원 과정">
+<h2>지나온 과정</h2>
+<ol>
+<li><span class="dot" aria-hidden="true">✓</span><b>공고 스크랩</b><span>내 공고 등록</span></li>
+<li><span class="dot" aria-hidden="true">✓</span><b>신청 접수</b><span id="applyPeriod">접수 완료</span></li>
+<li><span class="dot" aria-hidden="true">✓</span><b>서류 제출</b><span>제출 완료</span></li>
+<li><span class="dot" aria-hidden="true">✓</span><b>당첨자 발표</b><span>당첨</span></li>
+<li><span class="dot" aria-hidden="true">✓</span><b>계약</b><span>계약 완료</span></li>
+<li class="last"><span class="dot" aria-hidden="true">✓</span><b>입주</b><span>지금</span></li>
+</ol>
+</section>
+
+<div class="two-col">
+<section class="box" id="noticeBox" aria-label="입주한 공고">
+<h2>입주한 공고</h2>
+<dl class="info-list" id="noticeInfo"></dl>
+</section>
+
+<section class="box" aria-label="입주 후 챙길 일">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+<h2>입주 후 챙길 일</h2>
+<span class="check-count" id="checkCount"></span>
+</div>
+<ul class="checklist" id="checklist">
+<li><label><input type="checkbox"><div><strong>전입신고 하기</strong><span>이사한 날부터 14일 이내에 주민센터나 정부24에서 신고합니다.</span></div></label></li>
+<li><label><input type="checkbox"><div><strong>집 상태 사진으로 남기기</strong><span>입주할 때 벽지, 바닥, 설비 상태를 찍어 두면 퇴거할 때 도움이 됩니다.</span></div></label></li>
+<li><label><input type="checkbox"><div><strong>계약서와 보증금 영수증 보관하기</strong><span>임대차 계약서와 보증금 납부 내역은 재계약과 퇴거 때까지 보관합니다.</span></div></label></li>
+<li><label><input type="checkbox"><div><strong>임대료 자동이체 설정하기</strong><span>월 임대료와 관리비가 밀리지 않도록 납부일을 확인합니다.</span></div></label></li>
+<li><label><input type="checkbox"><div><strong>재계약 시기 확인하기</strong><span>계약 기간과 갱신 조건은 계약서와 공급 기관 안내에서 확인합니다.</span></div></label></li>
+</ul>
+</section>
+</div>
+
+<section class="next" aria-label="다음 할 일">
+<div>
+<strong id="nextTitle">다른 공고도 계속 챙길 수 있습니다</strong>
+<span id="nextText">일정 대시보드에서 새로운 공고를 확인해 보세요.</span>
+</div>
+<div class="next-btns">
+<a class="btn" href="index.html">처음으로</a>
+<a class="btn" href="../04-schedule-calendar/index.html">일정 대시보드</a>
+<a class="btn btn-primary" href="../05-housing-tracker/index.html">지원 트래킹 보드</a>
+</div>
+</section>
+
+<p class="outro-note">입주 완료 기록은 이 기기(브라우저)에만 저장됩니다. 체크리스트는 참고용이며, 정확한 절차는 공급 기관과 계약서 안내를 따릅니다.</p>
+</div>
+</main>
+
+<footer class="footer">
+<div class="wrap">
+<strong>공공주거 길잡이</strong>
+<span>이 서비스는 시연용 프로토타입입니다. 화면의 공고 정보는 예시입니다.</span>
+<span id="source"></span>
+</div>
+</footer>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="outro.js"></script>
+</body>
+</html>

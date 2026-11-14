@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공공주거 길잡이 | 청년 공공임대주택 공고 찾기와 일정 관리</title>
+<meta name="description" content="지금 신청할 수 있는 청년 공공임대주택 공고를 마감 전에 확인하고, 어려운 공고문은 쉬운 말로 읽고, 신청 일정을 놓치지 않도록 챙깁니다.">
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="landing.css">
+</head>
+<body>
+<div class="page">
+<a class="skip" href="#main">본문 바로가기</a>
+
+<header class="topbar">
+<div class="wrap">
+<a class="brand" href="index.html"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></a>
+<nav aria-label="랜딩 페이지 메뉴">
+<a href="about.html">서비스 소개</a>
+<a href="#situations">이렇게 도와드려요</a>
+<a href="#faq">자주 묻는 질문</a>
+<a class="btn btn-primary" href="../04-schedule-calendar/index.html">공고 보러 가기</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<!-- 히어로: 사용자가 가장 먼저 궁금한 것(지금 신청할 수 있는 공고가 있는지)에 바로 답합니다 -->
+<section class="hero">
+<div class="wrap">
+<div class="hero-copy">
+<div class="hero-top">
+<div class="hero-title">
+<span class="eyebrow">만 19~39세 청년을 위한 공공임대주택 길잡이</span>
+<h1>내가 신청할 수 있는<br>공공임대주택,<br>마감 전에 놓치지 마세요</h1>
+</div>
+<img class="hero-art hero-art-inline" src="assets/hero-home.svg" alt="" width="520" height="200">
+</div>
+<p>행복주택, 청년 매입임대 공고를 한곳에서 모아 보고, 어려운 공고문은 쉬운 말로 확인하고, 접수부터 계약까지 일정을 챙겨드립니다.</p>
+<div class="hero-cta">
+<a class="btn btn-primary btn-lg" href="../04-schedule-calendar/index.html">지금 모집 중인 공고 보기<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a class="btn btn-lg" href="../03-notice-summary/index.html">보고 있는 공고문이 있어요</a>
+</div>
+<ul class="trust" aria-label="이용 안내">
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>무료</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>회원가입 없이 바로 이용</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>입력한 정보는 이 기기에만 저장</li>
+</ul>
+</div>
+
+<div class="hero-side">
+<img class="hero-art hero-art-side" src="assets/hero-home.svg" alt="" width="520" height="200">
+<a class="preview" href="../04-schedule-calendar/index.html" aria-label="지금 접수 중인 공고, 일정 대시보드에서 보기">
+<div class="preview-head">
+<div><strong id="previewTitle">지금 접수 중인 공고</strong><span id="previewDate"></span></div>
+<span class="preview-more">전체 일정 보기 →</span>
+</div>
+<ul class="preview-list" id="previewList"></ul>
+<p class="preview-foot" id="previewFoot"></p>
+</a>
+</div>
+</div>
+<div class="skyline" aria-hidden="true"><img src="assets/skyline.svg" alt="" width="1440" height="200"></div>
+</section>
+
+<!-- 상황별 안내: 사용자가 자기 상황을 고르면 어디서 시작할지 알려줍니다 -->
+<section class="section section-sub" id="situations">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">이렇게 도와드려요</span>
+<h2>지금 어떤 상황이신가요?</h2>
+<p>가장 가까운 상황을 고르면 어디서 시작하면 되는지 알려드립니다. 서비스 화면에서는 왼쪽 메뉴로 언제든 다른 기능으로 옮겨 갈 수 있습니다.</p>
+</div>
+<div class="situations">
+<a class="situation" href="../04-schedule-calendar/index.html">
+<span class="sit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v14H4z"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
+<span class="quote">“어떤 공고가 있는지부터 알고 싶어요”</span>
+<p>지금 접수 중이거나 곧 열리는 공고를 월간 캘린더에서 D-day와 함께 확인합니다. 관심 있는 공고는 ☆를 눌러 내 캘린더에 담아 두세요.</p>
+<span class="go">일정 대시보드에서 시작 →</span>
+</a>
+<div class="situation">
+<span class="sit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17.5v.01"/></svg></span>
+<span class="quote">“내가 신청할 수 있는지 모르겠어요”</span>
+<p>나이, 지역, 소득, 자산 등 9개 질문에 답하면 지금 모집 중인 공고 가운데 내 조건에 맞는 공고를 보여드립니다. 약 2분 걸립니다.</p>
+<span class="go muted">서비스 화면 왼쪽 메뉴의 ‘자가진단’에서 시작</span>
+</div>
+<a class="situation" href="../03-notice-summary/index.html">
+<span class="sit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>
+<span class="quote">“공고문을 읽어도 무슨 말인지 모르겠어요”</span>
+<p>공고 링크를 붙여 넣으면 신청 자격, 일정, 보증금과 월 임대료를 정리하고 어려운 용어를 쉬운 말로 풀어드립니다.</p>
+<span class="go">공고 추가에서 시작 →</span>
+</a>
+<a class="situation" href="../05-housing-tracker/index.html">
+<span class="sit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h4v14H4zM10 5h4v9h-4zM16 5h4v6h-4z"/></svg></span>
+<span class="quote">“신청한 뒤에 일정을 놓칠까 봐 걱정돼요”</span>
+<p>공고마다 접수, 서류 제출, 당첨자 발표, 계약 단계를 기록하고 다음에 할 일과 남은 날짜를 알려드립니다.</p>
+<span class="go">지원 트래킹 보드에서 시작 →</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- 쉬운 공고 설명 예시 -->
+<section class="section" id="terms">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">쉬운 공고 설명</span>
+<h2>공고문 속 어려운 말, 이렇게 풀어드립니다</h2>
+<p>공고 상세 화면에서는 모르는 용어를 누르면 바로 뜻을 확인할 수 있습니다.</p>
+</div>
+<div class="terms">
+<article class="term-card">
+<span class="label">자격</span>
+<span class="before">공고문 표현 <b>무주택세대구성원</b></span>
+<p class="after">나와 주민등록상 같은 세대에 있는 가족 모두가 집을 가지고 있지 않다는 뜻입니다.</p>
+</article>
+<article class="term-card">
+<span class="label">소득</span>
+<span class="before">공고문 표현 <b>도시근로자 가구원수별 월평균소득 100% 이하</b></span>
+<p class="after">통계청이 발표하는 도시 근로자 가구의 평균 소득을 기준으로, 그 이하로 버는 경우 신청할 수 있다는 뜻입니다.</p>
+</article>
+<article class="term-card">
+<span class="label">모집</span>
+<span class="before">공고문 표현 <b>추가(예비)입주자 모집</b></span>
+<p class="after">이미 지어진 단지의 빈 집에 들어갈 사람이나, 빈 집이 생길 때를 대비한 대기 순번을 뽑는 모집입니다.</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- 자주 묻는 질문: 처음 온 사용자가 망설이는 이유를 미리 풀어 줍니다 -->
+<section class="section section-sub" id="faq">
+<div class="wrap faq-wrap">
+<div class="section-head">
+<span class="eyebrow">자주 묻는 질문</span>
+<h2>시작하기 전에 궁금한 점</h2>
+</div>
+<div class="faq">
+<details open>
+<summary>여기서 바로 공공임대주택을 신청할 수 있나요?</summary>
+<p>아니요. 신청은 LH청약플러스, 마이홈포털 등 각 공급 기관 사이트에서 합니다. 공공주거 길잡이는 신청할 공고를 찾고, 공고 내용을 이해하고, 신청 일정을 놓치지 않도록 돕습니다. 공고마다 원문 사이트로 바로 가는 링크를 함께 보여드립니다.</p>
+</details>
+<details>
+<summary>이용료가 있거나 회원가입이 필요한가요?</summary>
+<p>무료이며 회원가입 없이 바로 이용할 수 있습니다.</p>
+</details>
+<details>
+<summary>입력한 소득, 자산 정보는 어디에 저장되나요?</summary>
+<p>자가진단 답변과 스크랩한 공고, 지원 기록은 지금 사용하는 기기의 브라우저에만 저장됩니다. 다른 기기에서는 보이지 않으며, 브라우저 기록을 지우면 함께 지워집니다.</p>
+</details>
+<details>
+<summary>자가진단에서 맞는 공고로 나오면 신청 자격이 확정되나요?</summary>
+<p>아니요. 자가진단 결과는 참고용입니다. 최종 자격은 각 공고문의 기준과 공급 기관의 심사로 확정되므로, 신청 전에 공고문을 꼭 확인하세요.</p>
+</details>
+<details>
+<summary>어떤 공고를 볼 수 있나요?</summary>
+<p>행복주택, 청년 매입임대처럼 청년이 신청할 수 있는 공공임대주택 공고를 모아 보여드립니다. 원하는 공고가 없다면 공고 링크를 직접 추가할 수 있습니다.</p>
+</details>
+</div>
+</div>
+</section>
+
+<!-- 마지막 안내 -->
+<section class="cta-band">
+<div class="wrap">
+<div>
+<h2 id="ctaTitle">마감이 다가오는 공고가 있습니다.<br>오늘 한 번 확인해 보세요.</h2>
+<p>회원가입 없이 바로 시작할 수 있습니다.</p>
+</div>
+<a class="btn btn-lg" href="../04-schedule-calendar/index.html">지금 모집 중인 공고 보기</a>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="wrap">
+<strong>공공주거 길잡이</strong>
+<span>이 서비스는 시연용 프로토타입입니다. 화면의 공고 정보는 예시이며, 최종 신청 자격은 각 공고문과 공급 기관에서 확인해야 합니다.</span>
+<span id="source"></span>
+<span><a href="about.html">서비스 소개</a> · 공고 원문 확인: <a href="https://www.myhome.go.kr" target="_blank" rel="noopener">마이홈포털</a> · <a href="https://apply.lh.or.kr" target="_blank" rel="noopener">LH청약플러스</a></span>
+</div>
+</footer>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="landing.js"></script>
+</body>
+</html>
