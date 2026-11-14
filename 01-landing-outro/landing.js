@@ -45,18 +45,22 @@
   $('source').textContent = '공고 정보 출처: 마이홈포털, LH청약플러스, 각 공급기관 모집공고, ' + fmt(S.today) + ' 기준. 시연 기준일은 ' + fmt(S.today) + '이며, 공고 내용은 변경될 수 있습니다.';
 })();
 
-// 상단 메뉴: 지금 보고 있는 구역의 메뉴를 굵게 표시합니다. (about.html은 마크업에서 '서비스 소개'를 표시합니다)
+// 상단 메뉴: '이렇게 도와드려요', '자주 묻는 질문'을 누르면 랜딩에서 그 구역만 단독으로 보여줍니다.
+// 주소 뒤의 값(#situations, #faq)으로 전환하며, '홈'(#top)이나 값이 없으면 랜딩 전체를 보여줍니다.
 (function () {
+  const SOLO = ['situations', 'faq'];
+  const main = document.getElementById('main');
   const links = [...document.querySelectorAll('.topnav a[data-section]')];
-  const targets = links.map((a) => document.getElementById(a.dataset.section)).filter(Boolean);
-  if (!targets.length) return;
-  const mark = () => {
-    const y = window.scrollY + 120;
-    let cur = null;
-    targets.forEach((t) => { if (t.offsetTop <= y && t.offsetTop + t.offsetHeight > y) cur = t.id; });
+  if (!main || !links.length) return;
+  const blocks = [...main.children];
+  const apply = () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    const solo = SOLO.includes(h) ? h : null;
+    blocks.forEach((b) => { b.hidden = solo ? b.id !== solo : false; });
+    const cur = solo || 'top';
     links.forEach((a) => { if (a.dataset.section === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+    if (solo || h === "top" || h === "") window.scrollTo(0, 0);
   };
-  window.addEventListener('scroll', mark, { passive: true });
-  window.addEventListener('hashchange', mark);
-  mark();
+  window.addEventListener('hashchange', apply);
+  apply();
 })();
