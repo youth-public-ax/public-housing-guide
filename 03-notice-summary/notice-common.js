@@ -18,18 +18,43 @@
     return { id: p.get('id'), from: p.get('from'), state: p.get('state') };
   }
 
+  // 공고는 notices(모집 중)와 trackedNotices(접수가 끝나고 진행 중)에서 찾습니다.
+  const ALL = S.notices.concat(S.trackedNotices || []);
+
+  // 공고문 세부 단계(steps)가 있으면 오늘 날짜로 지난 단계 · 진행 중 · 다음 단계를 나눕니다.
+  function stepStates(n) {
+    if (!n.steps) return null;
+    let nextFound = false;
+    return n.steps.map((s) => {
+      const a = parse(s.start);
+      const b = parse(s.end);
+      let state = 'later';
+      if (TODAY > b) state = 'past';
+      else if (TODAY >= a) state = 'now';
+      else if (!nextFound) { state = 'next'; nextFound = true; }
+      return Object.assign({}, s, { state, days: Math.round((a - TODAY) / DAY) });
+    });
+  }
+
   function notice(id) {
-    const n = S.notices.find((x) => x.id === id) || S.notices[0];
+    const n = ALL.find((x) => x.id === id) || ALL[0];
     const a = parse(n.apply.start);
     const b = parse(n.apply.end);
+    const steps = stepStates(n);
     let dday;
     if (TODAY < a) dday = '접수 D-' + Math.round((a - TODAY) / DAY);
     else if (TODAY <= b) { const d = Math.round((b - TODAY) / DAY); dday = d === 0 ? '오늘 마감' : '마감 D-' + d; }
-    else dday = '접수 마감';
+    else {
+      const nx = steps && steps.find((s) => s.state === 'next');
+      dday = nx ? '다음 일정 · ' + nx.label + ' D-' + nx.days : '접수 마감';
+    }
     const applyText = md(n.apply.start) + ' ~ ' + md(n.apply.end);
     const endP = n.apply.end.split('-');
     return Object.assign({}, n, AI.notices[n.id] || {}, {
-      dday, applyText,
+      dday, applyText, steps,
+      applyClosed: TODAY > b,
+      nowStep: steps ? steps.find((s) => s.state === 'now') : null,
+      nextStep: steps ? steps.find((s) => s.state === 'next') : null,
       applyEndText: Number(endP[1]) + '월 ' + Number(endP[2]) + '일'
     });
   }

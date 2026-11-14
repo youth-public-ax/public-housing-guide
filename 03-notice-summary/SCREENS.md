@@ -13,4 +13,5 @@
 - 스크랩 상태는 브라우저 저장 키 phg-calendar-stars를 씁니다.
 - 용어 풀이와 AI 설명 패널은 별도 화면이 아니라 notice-detail.html, review.html 안의 패널입니다. 밑줄 단어는 notice-data.js의 용어 사전에서 찾아 자동으로 표시합니다.
 - AI 분석과 답변은 시연용 예시입니다. 공고 추가에서는 어떤 링크를 넣어도 예시 공고(gyeongnam-youth-2026)로 결과를 보여줍니다.
-- 접수 이후 일정(발표, 서류 제출, 계약, 입주)은 shared/sample-data.js에 아직 없어 notice-data.js에 예시 값으로 두었습니다. shared에 추가되면 그 값을 씁니다.
+- 공고는 shared/sample-data.js의 notices와 trackedNotices에서 찾습니다. 공고에 steps(공고문 세부 단계)가 있으면 그 일정을 그대로 보여주고, 오늘 날짜로 지남 · 진행 중 · 다음 일정을 표시합니다. 예: notice-detail.html?id=sh-youth-buy-2026-1
+- steps가 없는 공고의 접수 이후 일정은 notice-data.js에 예시 값으로 두었고 화면에 (예시)로 표시합니다.

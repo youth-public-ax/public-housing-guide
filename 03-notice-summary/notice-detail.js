@@ -28,8 +28,20 @@
   // AI 정리 본문
   $('summary').textContent = n.summary || '';
   $('elig').innerHTML = (n.eligibility || []).map((x) => '<li>' + esc(x) + '</li>').join('');
-  $('schedule').innerHTML = '<dt>청약 접수</dt><dd><strong>' + esc(n.applyText) + '</strong></dd>' +
-    AI.steps.map((s, i) => '<dt>' + esc(s) + '</dt><dd>' + esc((n.schedule || [])[i] || '공고문 확인') + ' <span class="example">(예시)</span></dd>').join('');
+  if (n.steps) {
+    // shared/sample-data.js의 공고문 세부 단계를 그대로 보여줍니다.
+    const tag = { past: '지남', now: '진행 중', next: '다음 일정' };
+    $('schedule').innerHTML = n.steps.map((s) => {
+      const t = tag[s.state] ? ' <span class="step-tag ' + s.state + '">' + tag[s.state] + '</span>' : '';
+      const sub = (s.sub || []).map((x) => '<dt class="sub-step">' + esc(x.label) + '</dt><dd class="sub-step">' + esc(x.text) + '</dd>').join('');
+      return '<dt class="st-' + s.state + '">' + esc(s.label) + t + '</dt><dd class="st-' + s.state + '">' + esc(s.text) + '</dd>' + sub;
+    }).join('');
+    $('schedule').classList.add('stacked');
+    $('scheduleNote').textContent = '공고문 표기 그대로입니다. 날짜는 공급 기관 사정으로 바뀔 수 있습니다.';
+  } else {
+    $('schedule').innerHTML = '<dt>청약 접수</dt><dd><strong>' + esc(n.applyText) + '</strong></dd>' +
+      AI.steps.map((s, i) => '<dt>' + esc(s) + '</dt><dd>' + esc((n.schedule || [])[i] || '공고문 확인') + ' <span class="example">(예시)</span></dd>').join('');
+  }
   $('rent').textContent = n.rent;
   $('areaNote').textContent = n.area ? n.area + '의 숫자는 전용면적을 뜻합니다.' : '주택형별 금액은 공고문에서 확인하세요.';
   $('docs').innerHTML = (n.docs || []).map((x) => '<li>' + esc(x) + '</li>').join('');

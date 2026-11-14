@@ -51,6 +51,16 @@
 .card .rent { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--color-bg-sub); font-size: 14px; font-weight: 500; line-height: 1.6; }
 .card .sub { font-size: 12px; color: var(--color-text-sub); }
 .example { font-size: 11px; color: var(--color-text-sub); font-weight: 400; }
+.card dl.stacked { grid-template-columns: 1fr; row-gap: 2px; }
+.card dl.stacked dd { text-align: left; margin-bottom: 10px; font-weight: 400; color: #3A3A37; }
+.card dl.stacked dd.sub-step { margin-bottom: 6px; padding-left: 12px; }
+.card dl .st-past { color: var(--color-text-sub); }
+.card dl .st-now, .card dl .st-next { font-weight: 700; }
+.card dl dt.sub-step, .card dl dd.sub-step { font-size: 13px; color: var(--color-text-sub); font-weight: 400; }
+.card dl dt.sub-step { padding-left: 12px; }
+.step-tag { margin-left: 4px; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: #F0F0ED; color: #4A4A46; white-space: nowrap; }
+.step-tag.now { background: #E6ECFB; color: #1E3F99; }
+.step-tag.next { background: #FDEBDD; color: #8A3F10; }
 input.edit { width: 9.5em; height: 32px; padding: 0 8px; border: 1px solid var(--color-border-strong); border-radius: 6px; font: inherit; font-size: 14px; text-align: right; }
 
 /* 밑줄 용어 */

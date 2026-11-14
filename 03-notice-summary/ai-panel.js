@@ -9,11 +9,17 @@
     let open = true;
     let pressed = null;
 
-    const autoLines = [
-      n.region + '에서 공급하는 ' + n.type + '입니다.',
-      '접수는 ' + n.applyText + '이고, 오늘 기준 ' + n.dday + '입니다.',
-      '임대 조건 예시는 ' + n.rent.split(' (')[0] + '입니다.'
-    ];
+    const autoLines = n.applyClosed && n.steps
+      ? [
+        n.region + '에서 공급하는 ' + n.type + '입니다. 접수(' + n.applyText + ')는 끝났습니다.',
+        n.nowStep ? '지금은 ‘' + n.nowStep.label + '’ 단계입니다.' : '지금은 다음 발표를 기다리는 단계입니다.',
+        n.nextStep ? '다음 일정은 ‘' + n.nextStep.label + '’, ' + n.nextStep.text + '입니다.' : '남은 일정은 공고문에서 확인하세요.'
+      ]
+      : [
+        n.region + '에서 공급하는 ' + n.type + '입니다.',
+        '접수는 ' + n.applyText + '이고, 오늘 기준 ' + n.dday + '입니다.',
+        '임대 조건 예시는 ' + n.rent.split(' (')[0] + '입니다.'
+      ];
 
     function body() {
       if (mode.kind === 'term') {
