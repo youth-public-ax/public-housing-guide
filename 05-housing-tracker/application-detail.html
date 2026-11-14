@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상세 지원 현황 | 공공주거 길잡이</title>
+<link rel="stylesheet" href="../shared/style.css">
+<link rel="stylesheet" href="tracker.css">
+</head>
+<body>
+<div class="layout">
+<aside class="gnb">
+<div class="gnb-brand"><strong>청년주거트래커</strong><span>공공주거 길잡이</span></div>
+<nav class="gnb-nav">
+<a href="../04-schedule-calendar/index.html">일정 대시보드</a>
+<a href="../05-housing-tracker/index.html">지원 트래킹 보드</a>
+<a href="../02-self-diagnosis/index.html">자가진단</a>
+</nav>
+<a class="gnb-add" href="../03-notice-summary/index.html">+ 공고 추가</a>
+</aside>
+
+<main class="layout-main">
+<div class="tk-wrap narrow" id="page">
+
+<a class="tk-back" id="back" href="index.html">&lt; 뒤로가기</a>
+
+<div id="notFound" class="tk-box tk-notfound" hidden>
+<p>공고를 찾을 수 없습니다.</p>
+</div>
+
+<div id="content" style="display: contents">
+<section class="tk-box tk-notice-head" aria-label="공고 헤더">
+<div class="tk-nh-top">
+<div class="tk-nh-info">
+<span class="tk-nh-meta"><span class="type" id="nType"></span><span id="nOrg"></span></span>
+<h1 id="nName"></h1>
+<span class="tk-nh-apply">접수 <span id="nApply"></span> <strong id="nDday"></strong></span>
+</div>
+<div class="tk-nh-btns">
+<button type="button" class="tk-star" id="star" aria-pressed="true"><span aria-hidden="true">★</span>스크랩</button>
+<a class="tk-link-btn" id="nLink" href="#">공고 원문</a>
+</div>
+</div>
+<nav class="tk-seg" aria-label="공고 보기 전환">
+<a id="segNotice" href="#">공고 상세</a>
+<span aria-current="page">지원 현황</span>
+</nav>
+</section>
+
+<section class="tk-box" aria-labelledby="tlTitle">
+<div class="tk-tl-head">
+<h2 id="tlTitle">신청부터 입주까지</h2>
+<span class="tk-pill" id="pill"></span>
+</div>
+<div style="overflow-x: auto">
+<ol class="tk-tl" id="steps"></ol>
+</div>
+<div class="tk-legend">
+<span><i style="background: #1C1C1C"></i>지나온 단계</span>
+<span><i style="background: #2B55C8; box-shadow: 0 0 0 3px #DCE5FA"></i>지금 기다리는 단계</span>
+<span><i style="border: 1.5px dashed #B5B5B0"></i>앞으로 할 단계</span>
+</div>
+</section>
+
+<div class="tk-two">
+<section class="tk-box tk-docs" aria-labelledby="docsTitle">
+<div class="tk-docs-head"><h2 id="docsTitle">준비 서류</h2><span id="docsCount"></span></div>
+<div id="docs"></div>
+</section>
+
+<section class="tk-box tk-panel" aria-live="polite">
+<h2 id="panelTitle"></h2>
+<div id="panel"></div>
+</section>
+</div>
+</div>
+
+<p class="tk-source" id="source"></p>
+</div>
+</main>
+</div>
+
+<div class="tk-overlay low" id="confirm" hidden>
+<section class="tk-dialog small" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+<h2 id="cTitle">스크랩을 해제할까요?</h2>
+<p>이 공고가 지원 트래킹 보드에 더 이상 표시되지 않고,<br>지금까지 기록한 지원 현황이 삭제됩니다.</p>
+<div class="tk-actions">
+<button type="button" class="tk-btn" id="cCancel">취소</button>
+<button type="button" class="tk-btn danger" id="cOk">해제하고 기록 삭제</button>
+</div>
+</section>
+</div>
+
+<script src="../shared/sample-data.js"></script>
+<script src="tracker.js"></script>
+<script src="detail.js"></script>
+</body>
+</html>
