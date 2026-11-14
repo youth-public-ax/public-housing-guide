@@ -383,3 +383,18 @@ a.situation:hover .go { text-decoration: underline; }
   .hero-top { flex-direction: column-reverse; align-items: stretch; gap: 16px; }
   .hero-art-inline { width: 72%; max-width: 260px; flex: none; margin: 0 0 0 auto; }
 }
+
+/* ── 히어로 크기 맞춤 (PC) ──────────────────────────────
+   오른쪽(일러스트 + 공고 카드)이 왼쪽 문구보다 훨씬 길어서 첫 화면 아래로 넘치던 문제를 정리합니다.
+   두 칸 너비를 같게 해 카드 제목 줄바꿈을 줄이고, 일러스트와 카드 여백을 줄입니다. */
+@media (min-width: 901px) {
+  .hero { padding-top: 48px; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+  .hero-art-side { width: 68%; max-width: 320px; }
+  .preview { padding: 20px 22px; gap: 12px; }
+  .preview-list { gap: 8px; }
+  .preview-item { padding: 12px 16px; }
+  .skyline { margin-top: 32px; }
+  .hero-cta { flex-wrap: nowrap; }
+  .hero-cta .btn { padding: 0 24px; white-space: nowrap; }
+}
