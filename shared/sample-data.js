@@ -49,5 +49,37 @@ window.SAMPLE = {
       rent: '2, 3순위 보증금 200만원, 월 약 23만원 (시세 50%)',
       link: 'https://www.myhome.go.kr'
     }
+  ],
+
+  // 공고 상세(03 notice-detail.html)와 상세 지원 현황(05 application-detail.html)에서 쓰는 공고입니다.
+  // 접수가 끝난 뒤 진행 중인 공고라 자가진단(02)과 일정 대시보드(04)의 notices에는 넣지 않습니다.
+  // 출처: SH인터넷청약시스템 주택임대 공고 (2026.6.26 공고, 2026.11.14 확인)
+  trackedNotices: [
+    {
+      id: 'sh-youth-buy-2026-1',
+      name: '2026년 1차 청년 매입임대주택 입주자 모집공고',
+      type: '청년 매입임대',
+      org: 'SH 서울주택도시개발공사',
+      region: '서울',
+      posted: '2026-06-26',
+      apply: { start: '2026-07-13', end: '2026-07-15' },
+      rent: '주택별 상이 (공고문 주택목록 참조)',
+      link: 'https://www.i-sh.co.kr/app/lay2/program/S48T1581C563/www/brd/m_247/view.do?multi_itm_seq=2&seq=306214',
+      // 세부 진행 단계: start, end는 날짜 계산용이고 text는 공고문 표기 그대로입니다.
+      steps: [
+        { key: 'apply', label: '인터넷 청약신청', start: '2026-07-13', end: '2026-07-15', text: '2026. 7. 13.(월) 10:00 ~ 7. 15.(수) 17:00' },
+        { key: 'doc-announce', label: '서류심사대상자 발표', start: '2026-07-20', end: '2026-07-20', text: '2026. 7. 20.(월) 16:00 예정' },
+        { key: 'doc-review', label: '서류심사대상자 입주자격 심사', start: '2026-07-20', end: '2026-11-30', text: '~ 2026. 11월' },
+        { key: 'winner', label: '당첨자 및 예비자 발표', start: '2026-11-20', end: '2026-11-20', text: '2026. 11. 20.(금) 16:00 예정' },
+        {
+          key: 'contract', label: '당첨자 계약', start: '2026-12-07', end: '2026-12-10', text: '2026. 12. 7.(월) ~ 12. 10.(목)',
+          sub: [
+            { label: '온라인(전자)계약 기간', start: '2026-12-07', end: '2026-12-09', text: '2026. 12. 7.(월) ~ 12. 9.(수)' },
+            { label: '방문 계약 기간', start: '2026-12-10', end: '2026-12-10', text: '2026. 12. 10.(목)' }
+          ]
+        },
+        { key: 'move-in', label: '입주기간', start: '2026-12-28', end: '2027-02-25', text: '2026. 12. 28.(월) ~ 2027. 2. 25.(목)' }
+      ]
+    }
   ]
 };
