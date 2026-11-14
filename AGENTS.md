@@ -15,7 +15,7 @@
 
 | 폴더 | 기능 | 담당 |
 |---|---|---|
-| 01-landing-outro | 랜딩 페이지, 아웃 페이지 | (영문 이름) |
+| 01-landing-outro | 랜딩 페이지, 아웃 페이지 | gyeongeun |
 | 02-self-diagnosis | 주거지원 자가진단 | sungyoon |
 | 03-notice-summary | AI 공고 설명 | (영문 이름) |
 | 04-schedule-calendar | 캘린더 대시보드 | seungbeom |
